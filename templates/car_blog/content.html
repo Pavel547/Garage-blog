@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %} Car Brands {% endblock %}
+
+{% block content %}
+    <section>
+        <ul>
+            {% for brands in car_brands_lst %}
+            <li>{{brands.brand}}</li>
+            {% endfor %}
+        </ul>
+    </section>
+{% endblock %}
