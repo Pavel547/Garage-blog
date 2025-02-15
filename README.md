@@ -1,1 +1,1 @@
-# garage-blog
+# Garage-blog
