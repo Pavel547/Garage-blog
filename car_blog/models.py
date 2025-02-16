@@ -3,6 +3,7 @@ from django.utils import timezone
 
 class CarBrand(models.Model):
     brand = models.CharField(max_length=50, unique=True)
+    brand_description = models.TextField(blank=True)
     
     def __str__(self):
         return self.brand

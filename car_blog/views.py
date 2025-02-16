@@ -4,10 +4,9 @@ from django.http import Http404
 from .models import CarBrand, CarReview
 
 def index(request):
-    try:
-        car_brands_list = CarBrand.objects.all()
-    except CarBrand.DoesNotExist:
-        return Http404('Car brands list is empty')
-    return render(request, 'car_blog/content.html', {'car_brands_lst': car_brands_list})
+    car_reviews_list = CarReview.objects.all()
+    return render(request, 'car_blog/content.html', {'car_reviews_lst': car_reviews_list})
 
-
+def review_detail(request, review_id):
+    review = get_object_or_404(CarReview, pk=review_id)
+    return render(request, 'car_blog/review.html', {'review_detail': review})
