@@ -3,7 +3,40 @@
 {% block title %}{{ review_detail.title }}{% endblock %}
 
 {% block content %}
-    <section>
-        <h1>{{review_detail.title}}</h1>
+<div>
+    <h1>{{review_detail.title}}</h1>
+    <section class="car-info">
+        <h2>Information</h2>
+        <p><strong>Brand: </strong>{{review_detail.brand}}</p>
+        <p><strong>Model: </strong>{{review_detail.model}}</p>
+        <p><strong>Release dateil: </strong>{{review_detail.date}}</p>
+        <p><strong>Type: </strong>{{review_detail.type}}</p>
     </section>
+    <section>
+        <h2>Technical Specifications</h2>
+        <p><strong>Engine: </strong>{{review_detail.engine}}</p>
+        <p><strong>Fuel: </strong>
+            {% for fuel in review_detail.fuel.all %}
+            {{ fuel }}
+            {% endfor %}
+        </p>
+        <p><strong>Horsepower: </strong>{{review_detail.horsepower_min}} - {{review_detail.horsepower_max}} HP</p>
+        <p><strong>Price: </strong>{{review_detail.price}} €</p>
+    </section>
+    <section>
+        <h2>Review</h2>
+        <p>{{review_detail.content}}</p>
+    </section>
+    <section>
+        <h2>Pros and cons</h2>
+        <div>
+            <h3>Pros</h3>
+            <p>{{review_detail.proc}}</p>
+        </div>
+        <div>
+            <h3>Cons</h3>
+            <p>{{review_detail.cons}}</p>
+        </div>
+    </section>
+</div>
 {% endblock %}

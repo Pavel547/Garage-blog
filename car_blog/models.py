@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.postgres.fields import ArrayField
 
 class CarBrand(models.Model):
     brand = models.CharField(max_length=50, unique=True)
@@ -7,15 +8,21 @@ class CarBrand(models.Model):
     
     def __str__(self):
         return self.brand
-    
-class CarReview(models.Model):
-    
+
+class FuelType(models.Model):
     FUEL_CHOICE = [
         ('Petrol', 'Petrol'),
         ('Diesel', 'Diesel'),
         ('Electric', 'Electric'),
         ('Hybrid', 'Hybrid'),
     ]
+    
+    fuel_type = models.CharField(max_length=10, choices=FUEL_CHOICE)
+    
+    def __str__(self):
+        return self.fuel_type
+
+class CarReview(models.Model):
     
     CAR_TYPES = [
         ('Convertible','Convertible'),
@@ -38,9 +45,10 @@ class CarReview(models.Model):
     year = models.PositiveIntegerField()
     content = models.TextField()
     engine = models.CharField(max_length=50)
-    fuel = models.CharField(max_length=50 ,choices=FUEL_CHOICE, blank=True)
+    fuel = models.ManyToManyField(FuelType, blank=True)
     type = models.CharField(max_length=50, choices=CAR_TYPES, blank=True)
-    horsepower = models.PositiveIntegerField()
+    horsepower_min = models.PositiveIntegerField()
+    horsepower_max = models.PositiveIntegerField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
     proc = models.TextField(help_text="Advantages of the car")
     cons = models.TextField(help_text="Disadvantages of the car")
