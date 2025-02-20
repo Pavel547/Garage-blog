@@ -31,12 +31,15 @@
         <h2>Pros and cons</h2>
         <div>
             <h3>Pros</h3>
-            <p>{{review_detail.proc}}</p>
+            <p>{{review_detail.pros}}</p>
         </div>
         <div>
             <h3>Cons</h3>
             <p>{{review_detail.cons}}</p>
         </div>
+    </section>
+    <section>
+        <p><strong>Published Data: </strong> {{review_detail.create_at|date:"Y-m-d h:i"}} </p>
     </section>
 </div>
 {% endblock %}

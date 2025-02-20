@@ -50,7 +50,7 @@ class CarReview(models.Model):
     horsepower_min = models.PositiveIntegerField()
     horsepower_max = models.PositiveIntegerField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    proc = models.TextField(help_text="Advantages of the car")
+    pros = models.TextField(help_text="Advantages of the car")
     cons = models.TextField(help_text="Disadvantages of the car")
     create_at = models.DateTimeField(default=timezone.now)
 
