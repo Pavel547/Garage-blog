@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section>
+    {% for brand in car_brands %}
+    <img src="{{ brand.logo.brand_logo.url }}" alt="">
+    <p>{{brand.car_brand}}</p>
+    {% endfor %}
+</section>
+
+{% endblock %}

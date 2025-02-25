@@ -8,6 +8,13 @@ from .models import CarBrand, CarReview
 #     car_reviews_list = CarReview.objects.all()
 #     return render(request, 'car_blog/content.html', {'car_reviews_lst': car_reviews_list})
 
+class BrandsViewList(generic.ListView):
+    template_name = "car_blog/brands.html"
+    context_object_name = "car_brands"
+    
+    def get_queryset(self):
+        return CarBrand.objects.all()
+    
 class IndexView(generic.ListView):
     template_name = "car_blog/content.html"
     context_object_name = "car_reviews_lst"

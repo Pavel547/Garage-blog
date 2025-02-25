@@ -1,13 +1,19 @@
 from django.db import models
 from django.utils import timezone
-from django.contrib.postgres.fields import ArrayField
 
 class CarBrand(models.Model):
-    brand = models.CharField(max_length=50, unique=True)
+    car_brand = models.CharField(max_length=50, unique=True)
     brand_description = models.TextField(blank=True)
     
     def __str__(self):
-        return self.brand
+        return self.car_brand
+    
+class CarBrandLogo(models.Model):
+    brand = models.OneToOneField(CarBrand, on_delete=models.CASCADE, related_name="logo")
+    brand_logo = models.ImageField(upload_to='car_logo', blank=True)
+    
+    def __str__(self):
+        return f"{self.brand.car_brand} Logo"
 
 class FuelType(models.Model):
     FUEL_CHOICE = [
@@ -56,3 +62,12 @@ class CarReview(models.Model):
 
     def __str__(self):
         return self.title
+    
+    
+class CarReviewImg(models.Model):
+    car_review = models.ForeignKey(CarReview, on_delete=models.CASCADE, related_name="car_img")
+    car_img = models.ImageField(upload_to='car_img',blank=True,)
+    
+    def __str__(self):
+        return f"{self.car_review.title} Img's"
+    
