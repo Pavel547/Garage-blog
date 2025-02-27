@@ -10,7 +10,7 @@ class CarBrand(models.Model):
     
 class CarBrandLogo(models.Model):
     brand = models.OneToOneField(CarBrand, on_delete=models.CASCADE, related_name="logo")
-    brand_logo = models.ImageField(upload_to='car_logo', blank=True)
+    brand_logo = models.ImageField(upload_to='car_logo/', blank=True)
     
     def __str__(self):
         return f"{self.brand.car_brand} Logo"

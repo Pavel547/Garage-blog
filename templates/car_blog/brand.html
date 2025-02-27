@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
-{% block title %} {{ car_brand.brand }} {% endblock %}
+{% block title %} {{brand_details.brand}} {% endblock %}
 
 {% block content %}
-    <section>
-        <h1>{{ car_brand.brand }}</h1>
-        <img src="" alt="">
-        <p>{{ car_brand.brand_description }}</p>
-    </section>
+<section>
+    <img src="{{ brand_details.logo.brand_logo.url }}" alt="Car brand logo">
+    <h1>{{ brand_details.car_brand }}</h1>
+    <p>{{ brand_details.brand_description }}</p>
+</section>
 {% endblock %}

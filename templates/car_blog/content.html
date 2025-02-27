@@ -2,15 +2,15 @@
 {% block title %} Car Reviews {% endblock %}
 
 {% block content %}
-    <section>
-        {% if car_reviews_lst %}
-        <ul>
-            {% for reviews in car_reviews_lst %}
-            <li><a href="{% url 'car_blog:review_detail' reviews.id%}">{{ reviews.title }}</a></li>
-            {% endfor %}
-        </ul>
-        {% else %}
-            <p>Car reviews list is empty</p>
-        {% endif %}
-    </section>
+<section>
+    {% if reviews_list %}
+    <ul>
+        {% for reviews in reviews_list %}
+        <li><a href="{% url 'car_blog:review_details' reviews.id%}">{{ reviews.title }}</a></li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>Car reviews list is empty</p>
+    {% endif %}
+</section>
 {% endblock %}
