@@ -7,10 +7,10 @@ class CarBrand(models.Model):
     
     def __str__(self):
         return self.car_brand
-    
-class CarBrandLogo(models.Model):
-    brand = models.OneToOneField(CarBrand, on_delete=models.CASCADE, related_name="logo")
-    brand_logo = models.ImageField(upload_to='car_logo/', blank=True)
+
+class BrandLogo(models.Model):
+    brand = models.OneToOneField(CarBrand, on_delete=models.CASCADE, related_name="brand_logo")
+    logo_img = models.ImageField(upload_to='brand_logos', blank=True)
     
     def __str__(self):
         return f"{self.brand.car_brand} Logo"
@@ -56,18 +56,28 @@ class CarReview(models.Model):
     horsepower_min = models.PositiveIntegerField()
     horsepower_max = models.PositiveIntegerField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    pros = models.TextField(help_text="Advantages of the car")
-    cons = models.TextField(help_text="Disadvantages of the car")
     create_at = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return self.title
-    
-    
-class CarReviewImg(models.Model):
-    car_review = models.ForeignKey(CarReview, on_delete=models.CASCADE, related_name="car_img")
-    car_img = models.ImageField(upload_to='car_img',blank=True,)
+
+class CarPros(models.Model):
+    car_review_pros = models.ForeignKey(CarReview, on_delete=models.CASCADE, related_name="pros")
+    text = models.CharField(max_length=150, blank=True)
     
     def __str__(self):
-        return f"{self.car_review.title} Img's"
+        return f"{self.text}"
     
+class CarCons(models.Model):
+    car_review_cons = models.ForeignKey(CarReview, on_delete=models.CASCADE, related_name="cons")
+    text = models.CharField(max_length=150, blank=True)
+    
+    def __str__(self):
+        return f"{self.text}"
+    
+class ReviewImgs(models.Model):
+    car_review = models.ForeignKey(CarReview, on_delete=models.CASCADE, related_name="car_review_imgs")
+    review_imgs = models.ImageField(upload_to='review_imgs', blank=True)
+    
+    def __str__(self):
+        return f"{self.car_review.title} Review img's"

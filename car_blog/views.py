@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from  django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView
 
 from .models import CarBrand, CarReview
 
@@ -8,7 +8,7 @@ class IndexView(ListView):
     template_name = "car_blog/content.html"
     context_object_name = "reviews_list"
     
-class BrandsListView(IndexView):
+class BrandsListView(ListView):
     model = CarBrand
     template_name = "car_blog/brands.html"
     context_object_name = "brands_list"
