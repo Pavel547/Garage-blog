@@ -55,7 +55,8 @@ class CarReview(models.Model):
     type = models.CharField(max_length=50, choices=CAR_TYPES, blank=True)
     horsepower_min = models.PositiveIntegerField()
     horsepower_max = models.PositiveIntegerField()
-    price = models.DecimalField(max_digits=10, decimal_places=2)
+    price_min = models.DecimalField(max_digits=10, decimal_places=2, default=0.0)
+    price_max = models.DecimalField(max_digits=10, decimal_places=2, default=0.0)
     create_at = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
