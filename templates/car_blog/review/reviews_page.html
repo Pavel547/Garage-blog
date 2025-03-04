@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %} Reviews {% endblock %}
+
+{% block content %}
+    <section>
+        <ul>
+            {% if reviews_list %}
+                {% for reviews in reviews_list %}
+                    <li><a href="{% url 'car_blog:review_details' reviews.id%}">{{ reviews.title }}</a></li>
+                {% endfor %}
+            {% else %}
+                <p>Car reviews list is empty</p>
+            {% endif %}
+        </ul>
+    </section>
+{% endblock %}

@@ -3,22 +3,25 @@ from django.views.generic import ListView, DetailView
 
 from .models import CarBrand, CarReview
 
-class IndexView(ListView):
+def index(request):
+    return render(request, "car_blog/index.html")
+    
+class ReviewsListView(ListView):
     model = CarReview
-    template_name = "car_blog/content.html"
+    template_name = "car_blog/review/reviews_page.html"
     context_object_name = "reviews_list"
     
 class BrandsListView(ListView):
     model = CarBrand
-    template_name = "car_blog/brands.html"
+    template_name = "car_blog/brand/brands.html"
     context_object_name = "brands_list"
     
 class ReviewDetailView(DetailView):
     model = CarReview
-    template_name = "car_blog/review.html"
+    template_name = "car_blog/review/review.html"
     context_object_name = "review_details"
     
 class BrandDetailView(DetailView):
     model = CarBrand
-    template_name = "car_blog/brand.html"
+    template_name = "car_blog/brand/brand.html"
     context_object_name = "brand_details"
