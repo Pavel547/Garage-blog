@@ -3,8 +3,10 @@
 
 {% block content %}
 <section>
-    <img src="{{ brand_details.logo.brand_logo.url }}" alt="Car brand logo">
-    <h1>{{ brand_details.car_brand }}</h1>
-    <p>{{ brand_details.brand_description }}</p>
+    <div class="container-xxl d-flex">
+        <img src="{{ brand_details.brand_logo.logo_img.url }}" alt="Car brand logo">
+        <h1>{{ brand_details.car_brand }}</h1>
+        <p>{{ brand_details.brand_description }}</p>
+    </div>
 </section>
 {% endblock %}

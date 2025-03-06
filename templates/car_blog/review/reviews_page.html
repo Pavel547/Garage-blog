@@ -4,14 +4,18 @@
 
 {% block content %}
     <section>
-        <ul>
-            {% if reviews_list %}
-                {% for reviews in reviews_list %}
-                    <li><a href="{% url 'car_blog:review_details' reviews.id%}">{{ reviews.title }}</a></li>
-                {% endfor %}
-            {% else %}
-                <p>Car reviews list is empty</p>
-            {% endif %}
-        </ul>
+        <div class="container-xxl">
+            <ul>
+                {% if reviews_list %}
+                    {% for reviews in reviews_list %}
+                        <li>
+                            <a href="{% url 'car_blog:review_details' reviews.id%}">{{ reviews.title }}</a>
+                        </li>
+                    {% endfor %}
+                {% else %}
+                    <p class="text-center">Car reviews list is empty</p>
+                {% endif %}
+            </ul>
+        </div>
     </section>
 {% endblock %}
