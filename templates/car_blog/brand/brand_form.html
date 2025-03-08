@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section>
+    <form action="{% url 'car_blog:add_brand' %}" method="post">
+        {% csrf token %}
+        <label for="car_brand">Car brand:</label>
+        <input id="car_brand" type="text" name="car_brand" value="current_brand">
+        <input type="submit" value="Add">
+    </form>
+</section>
+{% endblock %}

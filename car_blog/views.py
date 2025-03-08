@@ -25,3 +25,6 @@ class BrandDetailView(DetailView):
     model = CarBrand
     template_name = "car_blog/brand/brand.html"
     context_object_name = "brand_details"
+
+def create_review(request):
+    return render(request, "car_blog/review/review_form.html")
