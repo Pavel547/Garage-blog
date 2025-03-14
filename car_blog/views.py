@@ -31,17 +31,17 @@ class BrandDetailView(DetailView):
 def add_brand(request):
     if request.method == "POST":
         brandform = BrandForm(request.POST)
-        brandlogoform = BrandLogoForm(request.POST, request.FILES)
-        if brandform.is_valid() and brandlogoform.is_valid():
-            brand = brandform.save()
+        logoform = BrandLogoForm(request.POST, request.FILES)
+        if brandform.is_valid() and logoform.is_valid():
+            brand = brandform.save(commit=False)
+
+            logo = logoform.save(commit=False)
+            logo.brand = brand
+            logo.save()
             
-            brandlogoform = brandlogoform.save(commit=False)
-            brandlogoform.brand = brand
-            brandlogoform.save()
-            
-            return redirect ('brands_list')
+            return redirect('brands_list')
     else:
         brandform = BrandForm()
-        brandlogoform = BrandLogoForm()
-        
-    return render(request, "car_blog/brand/brand_form.html", {"brandform": brandform, "brandlogoform": brandlogoform})
+        logoform = BrandLogoForm()
+    
+    return render(request, "car_blog/brand/brand_form.html", {"brandform": brandform, "logoform": logoform})

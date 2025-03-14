@@ -12,9 +12,3 @@ class BrandLogoForm(forms.ModelForm):
         model = BrandLogo
         fields = ["logo_img"]
         
-class ReviewForm(forms.ModelForm):
-    class Meta:
-        model = CarReview
-        fields = "__all__"
-        
-        

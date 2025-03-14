@@ -3,10 +3,10 @@
 {% block content %}
 <section>
     <div class="container-xxl">
-        <form action="{% url 'car_blog:add_brand' %}" method="post">
+        <form action="{% url 'car_blog:add_brand' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ brandform }}
-            {{ brandlogoform }}
+            {{ logoform }}
             <input type="submit" value="Add">
         </form>
     </div>
