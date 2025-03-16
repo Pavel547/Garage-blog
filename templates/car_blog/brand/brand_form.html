@@ -5,8 +5,10 @@
     <div class="container-xxl">
         <form action="{% url 'car_blog:add_brand' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
+
             {{ brandform }}
             {{ logoform }}
+            
             <input type="submit" value="Add">
         </form>
     </div>

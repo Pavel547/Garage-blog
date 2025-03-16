@@ -3,10 +3,10 @@ from django.views.generic import ListView, DetailView
 
 from .models import CarBrand, CarReview
 
-from .forms import BrandForm, BrandLogoForm
+from .forms import BrandForm, BrandLogoForm, CarReviewForm, ReviewImgsForm, CarProsFormSet, CarConsFormSet
 
-def index(request):
-    return render(request, "car_blog/index.html")
+def home(request):
+    return render(request, "car_blog/home.html")
     
 class ReviewsListView(ListView):
     model = CarReview
@@ -32,16 +32,57 @@ def add_brand(request):
     if request.method == "POST":
         brandform = BrandForm(request.POST)
         logoform = BrandLogoForm(request.POST, request.FILES)
+        
         if brandform.is_valid() and logoform.is_valid():
-            brand = brandform.save(commit=False)
-
+            brand = brandform.save()
+            
             logo = logoform.save(commit=False)
             logo.brand = brand
             logo.save()
             
-            return redirect('brands_list')
+            return redirect("car_blog:brands_list")
     else:
         brandform = BrandForm()
         logoform = BrandLogoForm()
-    
-    return render(request, "car_blog/brand/brand_form.html", {"brandform": brandform, "logoform": logoform})
+        
+    context = {
+        "brandform": brandform,
+        "logoform": logoform,
+    }    
+        
+    return render(request, "car_blog/brand/brand_form.html", context)
+        
+def create_review(request):
+    if request.method == "POST":
+        reviewform = CarReviewForm(request.POST)
+        imgsform = ReviewImgsForm(request.POST, request.FILES)
+        prosformset = CarProsFormSet(request.POST)
+        consformset = CarConsFormSet(request.POST)
+        
+        if reviewform.is_valid() and imgsform.is_valid() and prosformset.is_valid() and consformset.is_valid():
+            review = reviewform.save()
+            
+            imgs = imgsform.save(commit=False)
+            imgs.car_review = review
+            imgs.save()
+            
+            prosformset.instance = review
+            consformset.instance = review
+            
+            prosformset.save()
+            consformset.save()
+            
+            return redirect("car_blog:reviews_list")
+    else:
+        reviewform = CarReviewForm()
+        imgsform = ReviewImgsForm()
+        prosformset = CarProsFormSet()
+        consformset = CarConsFormSet()
+        
+    context = {
+        "reviewform": reviewform,
+        "imgsform": imgsform,
+        "carprosformset": prosformset,
+        "carconsformset": consformset,
+    }
+    return render(request, "car_blog/review/review_form.html", context)

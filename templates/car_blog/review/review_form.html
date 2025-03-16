@@ -1,1 +1,20 @@
 {% extends "base.html" %}
+
+{% block content %}
+<section>
+    <form action="{% url 'car_blog:create_review' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        {{ reviewform }}
+        {{ imgsform }}
+
+        <h2>pros: </h2>
+        {{ carprosformset }}
+
+        <h2>cons: </h2>
+        {{ carconsformset }}
+
+        <input type="submit" value="save">
+    </form>
+</section>
+{% endblock %}
