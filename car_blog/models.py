@@ -46,6 +46,7 @@ class CarReview(models.Model):
     ]
     
     title = models.CharField(max_length=150)
+    preview_imgs = models.ImageField(upload_to='preview_imgs', blank=True)
     brand = models.ForeignKey(CarBrand, on_delete=models.CASCADE, related_name='car_reviews')
     model = models.CharField(max_length=50)
     year = models.PositiveIntegerField()

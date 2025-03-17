@@ -15,7 +15,7 @@ class ReviewsListView(ListView):
     
 class BrandsListView(ListView):
     model = CarBrand
-    template_name = "car_blog/brand/brands.html"
+    template_name = "car_blog/brand/brands_page.html"
     context_object_name = "brands_list"
     
 class ReviewDetailView(DetailView):
@@ -40,7 +40,7 @@ def add_brand(request):
             logo.brand = brand
             logo.save()
             
-            return redirect("car_blog:brands_list")
+            return redirect("car_blog:brands_page.html")
     else:
         brandform = BrandForm()
         logoform = BrandLogoForm()
@@ -54,7 +54,7 @@ def add_brand(request):
         
 def create_review(request):
     if request.method == "POST":
-        reviewform = CarReviewForm(request.POST)
+        reviewform = CarReviewForm(request.POST, request.FILES)
         imgsform = ReviewImgsForm(request.POST, request.FILES)
         prosformset = CarProsFormSet(request.POST)
         consformset = CarConsFormSet(request.POST)
@@ -78,7 +78,7 @@ def create_review(request):
         imgsform = ReviewImgsForm()
         prosformset = CarProsFormSet()
         consformset = CarConsFormSet()
-        
+
     context = {
         "reviewform": reviewform,
         "imgsform": imgsform,

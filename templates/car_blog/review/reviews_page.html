@@ -1,21 +1,29 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %} Reviews {% endblock %}
 
 {% block content %}
     <section>
-        <div class="container-xxl">
-            <ul>
-                {% if reviews_list %}
-                    {% for reviews in reviews_list %}
-                        <li>
-                            <a href="{% url 'car_blog:review_details' reviews.id%}">{{ reviews.title }}</a>
-                        </li>
-                    {% endfor %}
-                {% else %}
-                    <p class="text-center">Car reviews list is empty</p>
-                {% endif %}
-            </ul>
+        <div class="container-xxl m-4">
+            {% if reviews_list %}
+                {% for review in reviews_list %}
+                    <div class="card mb-3" style="max-width: 540px;">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="{{ review.car_review_imgs.review_imgs.url }}" alt="{{ review.title }} img" class="img-fluid rounded-start">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title p-3">{{ review.title }}</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>reviews list is empty</p>
+            {% endif %}
         </div>
     </section>
 {% endblock %}
