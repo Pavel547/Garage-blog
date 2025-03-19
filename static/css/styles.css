@@ -1,7 +1,15 @@
+
+/* Nav bar style */
 .nav-link {
     color: white !important;
 }
 
 .nav-link:hover {
     color: red !important; 
+}
+
+/* Card style */
+.card-link {
+    color: #212529 !important;
+    text-decoration: none;
 }

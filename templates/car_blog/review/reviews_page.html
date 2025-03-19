@@ -4,26 +4,27 @@
 {% block title %} Reviews {% endblock %}
 
 {% block content %}
-    <section>
-        <div class="container-xxl m-4">
-            {% if reviews_list %}
-                {% for review in reviews_list %}
-                    <div class="card mb-3" style="max-width: 540px;">
-                        <div class="row g-0">
-                            <div class="col-md-4">
-                                <img src="{{ review.car_review_imgs.review_imgs.url }}" alt="{{ review.title }} img" class="img-fluid rounded-start">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h5 class="card-title p-3">{{ review.title }}</h5>
-                                </div>
-                            </div>
+<section>
+    <div class="container mt-5">
+        {% if reviews_list %}
+            {% for review in reviews_list %}
+                <a href="{% url 'car_blog:review_details' review.id%}" class="card-link">
+                    <div class="card mt-2 border-dark border-2 p-2 d-flex flex-row align-items-center">
+                        <div class="me-3">
+                            <img src="{{ review.preview_imgs.url }}" 
+                            alt="{{ review.ritle }} Preview img" 
+                            class="img-thumbnail" 
+                            style="width: 300px; height: auto;">
                         </div>
+                        <h2 class="text-center text-capitalize mb-0">{{ review.title }}</h2>
                     </div>
-                {% endfor %}
-            {% else %}
-                <p>reviews list is empty</p>
-            {% endif %}
-        </div>
-    </section>
+                </a>
+            {% endfor %}
+        {% else %}
+            <div class="container p-5 my-5 border border-2">
+                <h1 class="text-center text-capitalize">review list is empty</h1>
+            </div>
+        {% endif %}
+    </div>
+</section>
 {% endblock %}
