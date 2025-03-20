@@ -6,14 +6,14 @@
         <form action="{% url 'car_blog:create_review' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
         
-            {{ reviewform }}
+            {{ reviewform.as_p }}
             {{ imgsform }}
 
             <h2>pros: </h2>
-            {{ carprosformset }}
+            {{ carprosformset.as_p }}
 
             <h2>cons: </h2>
-            {{ carconsformset }}
+            {{ carconsformset.as_p }}
 
             <input type="submit" value="save">
         </form>

@@ -4,6 +4,10 @@ from django.views.generic import ListView, DetailView
 from .models import CarBrand, CarReview
 
 from .forms import BrandForm, BrandLogoForm, CarReviewForm, ReviewImgsForm, CarProsFormSet, CarConsFormSet
+from .forms import CreateUserForm, LoginForm
+
+from django.contrib.auth.models import auth
+from django.contrib.auth import login, logout, authenticate
 
 def home(request):
     return render(request, "car_blog/home.html")
@@ -86,3 +90,31 @@ def create_review(request):
         "carconsformset": consformset,
     }
     return render(request, "car_blog/review/review_form.html", context)
+ 
+def registration(request):
+    if request.method == "POST":
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            
+            return redirect("car_blog:home")
+    
+    else:
+        form = CreateUserForm()
+    return render(request, "account/registration_form.html", {"registrationform": form})
+        
+def login(request):
+    if request.method == "POST":
+        form = LoginForm(request, data=request.POST)
+        
+        if form.is_valid():
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+            
+            user = authenticate(request, username=username, password=password)
+
+    else:
+        form = LoginForm()
+        
+    return redirect(request, "account/login_form.html", {"loginform": form})
+

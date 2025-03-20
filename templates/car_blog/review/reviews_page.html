@@ -9,7 +9,7 @@
         {% if reviews_list %}
             {% for review in reviews_list %}
                 <a href="{% url 'car_blog:review_details' review.id%}" class="card-link">
-                    <div class="card mt-2 border-dark border-2 p-2 d-flex flex-row align-items-center">
+                    <div class="card mt-2 border-dark border-2 p-2 d-flex flex-row align-items-center card-hover">
                         <div class="me-3">
                             <img src="{{ review.preview_imgs.url }}" 
                             alt="{{ review.ritle }} Preview img" 

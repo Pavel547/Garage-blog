@@ -13,3 +13,8 @@
     color: #212529 !important;
     text-decoration: none;
 }
+
+.card-hover:hover {
+    border-color: red !important;
+    box-shadow: 0 0 10px rgba(255, 0, 0.5);
+}

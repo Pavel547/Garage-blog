@@ -4,9 +4,8 @@
 
 {% block content %}
 <div class="container mt-5 border border-dark border-2">
-    <h1>{{ review_details.title }}</h1>
+    <h1 class="text-center">{{ review_details.title }}</h1>
     <section>
-        <h2>title photo</h2>
         {% for img in review_details.car_review_imgs.all %}
             <img class="img-fluid" src="{{ img.review_imgs.url }}" alt="Car Review Image">
         {% endfor %}
@@ -61,7 +60,7 @@
         </div>
     </section>
     <section>
-        <p><strong>Published Data: </strong> {{ review_details.create_at|date:"Y-m-d h:i" }} </p>
+        <p><strong>Published Data: </strong> {{ review_details.create_at|date:"Y/m/d h:i" }} </p>
     </section>
 </div>
 {% endblock %}

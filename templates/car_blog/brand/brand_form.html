@@ -6,8 +6,8 @@
         <form action="{% url 'car_blog:add_brand' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
 
-            {{ brandform }}
-            {{ logoform }}
+            {{ brandform.as_p }}
+            {{ logoform.as_p }}
             
             <input type="submit" value="Add">
         </form>
