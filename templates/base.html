@@ -1,52 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      {% block title %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}{% endblock %}</title>
-    <!-- Style -->
+      {% endblock %}
+    </title>
+    {% comment %}Bootstrap{% endcomment %}
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <!-- Bootstrap5 -->
-    {% load bootstrap5 %}
-    {% bootstrap_css %}
-    {% bootstrap_javascript %}
-</head>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}" />
+    {% comment %}Style{% endcomment %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+  </head>
 
-<body>
+  <body>
     <header class="bg-dark">
-        <div class="container-xxl d-flex justify-content-center">
-            <nav class="navbar-toggler">
-                <ul class="nav">
-                    <li class="nav-item">
-                        <a class="nav-link text-uppercase fs-5 fw-bold"
-                        href="{% url 'car_blog:home' %}">home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-uppercase fs-5 fw-bold " 
-                        href="{% url 'car_blog:brands_list' %}">carbrands</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-uppercase fs-5 fw-bold "
-                        href="{% url 'car_blog:reviews_list' %}">reviews</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-uppercase fs-5 fw-bold" 
-                        href="{% url 'car_blog:create_review' %}">create reviews</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-uppercase fs-5 fw-bold"
-                        href="{% url 'car_blog:add_brand' %}"> add car brand</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
+      <div class="container-xxl d-flex justify-content-center">
+        <nav class="navbar-toggler">
+          <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link text-uppercase fs-5 fw-bold" href="{% url 'car_blog:home' %}">home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-uppercase fs-5 fw-bold" href="{% url 'car_blog:brands_list' %}">carbrands</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-uppercase fs-5 fw-bold" href="{% url 'car_blog:reviews_list' %}">reviews</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-uppercase fs-5 fw-bold" href="{% url 'car_blog:create_review' %}">create reviews</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-uppercase fs-5 fw-bold" href="{% url 'car_blog:add_brand' %}">add car brand</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </header>
     <main>
-        {% block content %}
-        {% endblock %}
-    </main>
-</body>
+      {% block content %}
 
+      {% endblock %}
+    </main>
+  </body>
 </html>

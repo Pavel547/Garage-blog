@@ -1,9 +1,5 @@
 from django import forms
 
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-
-from django.contrib.auth.models import User
-
 from .models import CarBrand, BrandLogo, CarReview, CarPros, CarCons, ReviewImgs
 
 class BrandForm(forms.ModelForm):
@@ -42,13 +38,3 @@ class CarConsForm(forms.ModelForm):
         
 CarProsFormSet = forms.inlineformset_factory(CarReview, CarPros, form=CarProsForm, extra=5, can_delete=True)
 CarConsFormSet = forms.inlineformset_factory(CarReview, CarCons, form=CarConsForm, extra=5, can_delete=True)
-
-class CreateUserForm(UserCreationForm):
-    class Meta:
-        model = User
-        fields = ["username", "email", "password1", "password2"]
-        
-class LoginForm(AuthenticationForm):
-    class Meta:
-        username = forms.CharField(widget=forms.TextInput)
-        password = forms.CharField(widget=forms.PasswordInput)

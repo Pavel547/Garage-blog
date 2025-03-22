@@ -10,5 +10,4 @@ urlpatterns = [
     path('<int:pk>/brand-details/', views.BrandDetailView.as_view(), name="brand_details"),
     path('add-car-brand/', views.add_brand, name="add_brand"),
     path('create-review/', views.create_review, name="create_review"),
-    path('registration/', views.registration, name="registration")
 ]

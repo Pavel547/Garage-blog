@@ -1,66 +1,94 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ review_details.title }}{% endblock %}
+{% block title %}
+  {{ review_details.title }}
+{% endblock %}
 
 {% block content %}
-<div class="container mt-5 border border-dark border-2">
+  <div class="container mt-5 border border-dark border-2">
     <h1 class="text-center">{{ review_details.title }}</h1>
+    <section class="">
+      <div class="row">
+        <div class="col d-flex justify-content-center">
+          <img class="img-fluid" src="{{ review_details.preview_imgs.url }}" alt="Car Review Image" />
+        </div>
+      </div>
+    </section>
     <section>
-        {% for img in review_details.car_review_imgs.all %}
-            <img class="img-fluid" src="{{ img.review_imgs.url }}" alt="Car Review Image">
+      <h2>Information</h2>
+      <p>
+        <strong>Brand:</strong>{{ review_details.brand }}
+      </p>
+      <p>
+        <strong>Model:</strong>{{ review_details.model }}
+      </p>
+      <p>
+        <strong>Release dateil:</strong>{{ review_details.year }}
+      </p>
+      <p>
+        <strong>Type:</strong>{{ review_details.type }}
+      </p>
+    </section>
+    <section>
+      <h2>Technical Specifications</h2>
+      <p>
+        <strong>Engine:</strong>{{ review_details.engine }}
+      </p>
+      <p>
+        <strong>Fuel:</strong>
+        {% for fuel in review_details.fuel.all %}
+          {{ fuel }}
         {% endfor %}
-    </section>
-    <section class="car-info">
-        <h2>Information</h2>
-        <p><strong>Brand: </strong>{{ review_details.brand }}</p>
-        <p><strong>Model: </strong>{{ review_details.model }}</p>
-        <p><strong>Release dateil: </strong>{{ review_details.year }}</p>
-        <p><strong>Type: </strong>{{ review_details.type }}</p>
+      </p>
+      <p>
+        <strong>Horsepower:</strong>{{ review_details.horsepower_min }} HP - {{ review_details.horsepower_max }} HP
+      </p>
+      <p>
+        <strong>Price:</strong>{{ review_details.price_min }}€ - {{ review_details.price_max }}€
+      </p>
     </section>
     <section>
-        <h2>Technical Specifications</h2>
-        <p><strong>Engine: </strong>{{ review_details.engine }}</p>
-        <p><strong>Fuel: </strong>
-            {% for fuel in review_details.fuel.all %}
-                {{ fuel }}
+      <h2>Review</h2>
+      <p>{{ review_details.content }}</p>
+    </section>
+    <section>
+      <h2>Pros and cons</h2>
+      <div>
+        <h3>Pros</h3>
+        <ul>
+          {% if review_details.pros.all %}
+            {% for pros in review_details.pros.all %}
+              <li>{{ pros.text }}</li>
             {% endfor %}
-        </p>
-        <p><strong>Horsepower: </strong>{{ review_details.horsepower_min }} HP - {{ review_details.horsepower_max }} HP</p>
-        <p><strong>Price: </strong>{{ review_details.price_min }}€ - {{ review_details.price_max }}€</p>
+          {% else %}
+            <p>Pros list is empty</p>
+          {% endif %}
+        </ul>
+      </div>
+      <div>
+        <h3>Cons</h3>
+        <ul>
+          {% if review_details.cons.all %}
+            {% for cons in review_details.cons.all %}
+              <li>{{ cons.text }}</li>
+            {% endfor %}
+          {% else %}
+            <p>Cons list is empty</p>
+          {% endif %}
+        </ul>
+      </div>
     </section>
     <section>
-        <h2>Review</h2>
-        <p>{{ review_details.content }}</p>
+      <h3>Car photos:</h3>
+
+      {% for img in review_details.car_review_imgs.ll %}
+        <img src="{{ img.reviews_img.url }}" alt="{{ review_list }} imgs" />
+      {% endfor %}
     </section>
     <section>
-        <h2>Pros and cons</h2>
-        <div>
-            <h3>Pros</h3>
-            <ul>
-                {% if review_details.pros.all %}
-                    {% for pros in review_details.pros.all %}
-                        <li>{{ pros.text }}</li>
-                    {% endfor %}
-                {% else %}
-                    <p>Pros list is empty</p>
-                {% endif %}
-            </ul>
-        </div>
-        <div>
-            <h3>Cons</h3>
-            <ul>
-                {% if review_details.cons.all %}
-                    {% for cons in review_details.cons.all %}
-                        <li>{{ cons.text }}</li>
-                    {% endfor %}
-                {% else %}
-                    <p>Cons list is empty</p>
-                {% endif %}
-            </ul>
-        </div>
+      <p>
+        <strong>Published Data:</strong> {{ review_details.create_at|date:'Y/m/d h:i' }}
+      </p>
     </section>
-    <section>
-        <p><strong>Published Data: </strong> {{ review_details.create_at|date:"Y/m/d h:i" }} </p>
-    </section>
-</div>
+  </div>
 {% endblock %}
