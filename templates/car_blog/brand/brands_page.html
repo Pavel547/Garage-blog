@@ -1,20 +1,20 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
-{% block title %} Brands {% endblock %}
+{% block title %}
+  Brands
+{% endblock %}
 
 {% block content %}
-
-<section>
-    <div class="container-xxl">
-        {% if brands_list %}
-            {% for brand in brands_list %}
-                <img src="{{ brand.brand_logo.logo_img.url }}" alt="{{ brand.car_brand }}">
-                <h2><a href="{% url 'car_blog:brand_details' brand.id %}">{{ brand.car_brand }}</a></h2>
-            {% endfor %}
-        {% else %}
-            <p>Brands list is empty</p>
-        {% endif %}
+  <section>
+    <div class="container mt-5">
+      {% if brands_list %}
+        {% for brand in brands_list %}
+          <img src="{{ brand.brand_logo.logo_img.url }}" alt="{{ brand.car_brand }}" />
+          <h2><a href="{% url 'car_blog:brand_details' brand.id %}">{{ brand.car_brand }}</a></h2>
+        {% endfor %}
+      {% else %}
+        <p>Brands list is empty</p>
+      {% endif %}
     </div>
-</section>
-
+  </section>
 {% endblock %}

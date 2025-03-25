@@ -1,16 +1,16 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
 {% block content %}
-<section>
-    <div class="container-xxl">
-        <form action="{% url 'car_blog:add_brand' %}" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
+  <section>
+    <div class="container mt-5">
+      <form action="{% url 'car_blog:add_brand' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
 
-            {{ brandform.as_p }}
-            {{ logoform.as_p }}
-            
-            <input type="submit" value="Add">
-        </form>
+        {{ brandform.as_p }}
+        {{ logoform.as_p }}
+
+        <input type="submit" value="Add" />
+      </form>
     </div>
-</section>
+  </section>
 {% endblock %}
