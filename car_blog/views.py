@@ -5,7 +5,9 @@ from .models import CarBrand, CarReview
 
 from .forms import BrandForm, BrandLogoForm, CarReviewForm, ReviewImgsForm, CarProsFormSet, CarConsFormSet
 
-def home(request):
+from django.contrib.auth.decorators import login_required
+
+def home_view(request):
     return render(request, "car_blog/home.html")
     
 class ReviewsListView(ListView):
@@ -28,7 +30,7 @@ class BrandDetailView(DetailView):
     template_name = "car_blog/brand/brand.html"
     context_object_name = "brand_details"
 
-def add_brand(request):
+def add_brand_view(request):
     if request.method == "POST":
         brandform = BrandForm(request.POST)
         logoform = BrandLogoForm(request.POST, request.FILES)
@@ -51,8 +53,8 @@ def add_brand(request):
     }    
         
     return render(request, "car_blog/brand/brand_form.html", context)
-        
-def create_review(request):
+
+def create_review_view(request):
     if request.method == "POST":
         reviewform = CarReviewForm(request.POST, request.FILES)
         imgsform = ReviewImgsForm(request.POST, request.FILES)
@@ -78,7 +80,7 @@ def create_review(request):
         imgsform = ReviewImgsForm()
         prosformset = CarProsFormSet()
         consformset = CarConsFormSet()
-
+        
     context = {
         "reviewform": reviewform,
         "imgsform": imgsform,
