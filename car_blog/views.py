@@ -47,12 +47,12 @@ def add_brand_view(request):
         brandform = BrandForm()
         logoform = BrandLogoForm()
         
-    context = {
-        "brandform": brandform,
-        "logoform": logoform,
-    }    
+        context = {
+            "brandform": brandform,
+            "logoform": logoform,
+        }
         
-    return render(request, "car_blog/brand/brand_form.html", context)
+        return render(request, "car_blog/brand/brand_form.html", context)
 
 def create_review_view(request):
     if request.method == "POST":
@@ -81,10 +81,11 @@ def create_review_view(request):
         prosformset = CarProsFormSet()
         consformset = CarConsFormSet()
         
-    context = {
-        "reviewform": reviewform,
-        "imgsform": imgsform,
-        "carprosformset": prosformset,
-        "carconsformset": consformset,
-    }
-    return render(request, "car_blog/review/review_form.html", context)
+        context = {
+            "reviewform": reviewform,
+            "imgsform": imgsform,
+            "carprosformset": prosformset,
+            "carconsformset": consformset,
+        }
+        
+        return render(request, "car_blog/review/review_form.html", context)
