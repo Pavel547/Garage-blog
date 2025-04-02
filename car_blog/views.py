@@ -30,6 +30,7 @@ class BrandDetailView(DetailView):
     template_name = "car_blog/brand/brand.html"
     context_object_name = "brand_details"
 
+@login_required
 def add_brand_view(request):
     if request.method == "POST":
         brandform = BrandForm(request.POST)
@@ -54,6 +55,7 @@ def add_brand_view(request):
         
         return render(request, "car_blog/brand/brand_form.html", context)
 
+@login_required
 def create_review_view(request):
     if request.method == "POST":
         reviewform = CarReviewForm(request.POST, request.FILES)

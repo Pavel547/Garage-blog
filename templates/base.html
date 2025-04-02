@@ -18,6 +18,13 @@
 
   <body>
     <header class="bg-dark">
+      {% if user.is_authenticated %}
+        <a href="{% url 'user:profile' %}">profile</a>
+        <a href="{% url 'user:logout' %}">logout</a>
+      {% else %}
+        <a href="{% url 'user:registration' %}">registration</a>
+        <a href="{% url 'user:login' %}">login</a>
+      {% endif %}
       <div class="container d-flex justify-content-center">
         <nav class="navbar-toggler">
           <ul class="nav">

@@ -1,22 +1,23 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-<section>
+  <section>
     <div class="container mt-5">
-        <form action="{% url 'car_blog:create_review' %}" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-        
-            {{ reviewform.as_p }}
-            {{ imgsform }}
+      <form action="{% url 'car_blog:create_review' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
 
-            <h2>pros: </h2>
-            {{ carprosformset.as_p }}
+        {{ reviewform.as_p }}
+        {{ imgsform }}
 
-            <h2>cons: </h2>
-            {{ carconsformset.as_p }}
+        <h2>pros:</h2>
+        {{ carprosformset.as_p }}
 
-            <input type="submit" value="save">
-        </form>
+        <h2>cons:</h2>
+        {{ carconsformset.as_p }}
+
+        <input type="submit" value="save" />
+      </form>
     </div>
-</section>
+  </section>
 {% endblock %}
